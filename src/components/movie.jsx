@@ -111,7 +111,7 @@ export default class Movies extends Component {
           />
         </div>
         <div className="col">
-          {user && (
+          {user && user.isAdmin && (
             <div className="mb-2">
               <Link to="/movies/new" className="button btn btn-primary">
                 New Movie

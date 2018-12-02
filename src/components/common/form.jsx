@@ -7,19 +7,17 @@ class Form extends Component {
     data: {},
     error: {}
   };
-  valid = false;
+
   validate = () => {
     const errors = {};
 
     const { error } = Joi.validate(this.state.data, this.schema);
     if (!error) {
-      this.valid = true;
       return null;
     }
     for (let item of error.details) {
       errors[item.path[0]] = item.message;
     }
-    console.log(error);
     return errors;
   };
   validateProperty = input => {
@@ -53,7 +51,7 @@ class Form extends Component {
   };
   renderLabel = label => {
     return (
-      <button disabled={this.valid} className="btn btn-primary">
+      <button disabled={this.validate()} className="btn btn-primary">
         {label}
       </button>
     );
