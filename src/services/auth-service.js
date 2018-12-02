@@ -4,7 +4,6 @@ const apiEndpoint = "/login";
 const tokenKey = "token";
 
 async function login(email, password) {
-  console.log(email, password);
   const { headers } = await http.post(apiEndpoint, { email, password });
   //console.log(headers);
   localStorage.setItem(tokenKey, headers["x-auth-token"]);
