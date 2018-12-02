@@ -1,11 +1,13 @@
 import http from "./httpService";
 import jwtDecode from "jwt-decode";
-const apiEndpoint = "/auth";
+const apiEndpoint = "/login";
 const tokenKey = "token";
 
 async function login(email, password) {
-  const { data: jwt } = await http.post(apiEndpoint, { email, password });
-  localStorage.setItem(tokenKey, jwt);
+  console.log(email, password);
+  const { headers } = await http.post(apiEndpoint, { email, password });
+  //console.log(headers);
+  localStorage.setItem(tokenKey, headers["x-auth-token"]);
 }
 function logout() {
   localStorage.removeItem(tokenKey);
